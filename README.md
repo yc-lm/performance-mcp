@@ -76,6 +76,30 @@ PERFORMANCE_PASSWORD = "your-password"
 
 保存配置后，重启 Codex 或重新加载 MCP 配置使其生效。
 
+## 配置 Claude Code
+
+Claude Code 的全局 MCP 配置通常保存在 `%USERPROFILE%\\.claude.json`。在其中的 `mcpServers` 对象添加或更新 `performance-mcp` 条目。路径与凭据请替换为本机实际值。
+
+```json
+{
+  "mcpServers": {
+    "performance-mcp": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "D:\\project\\performance-mcp\\src\\index.js"
+      ],
+      "env": {
+        "PERFORMANCE_BASE_URL": "https://performance.example.com",
+        "PERFORMANCE_TOKEN": "your-short-lived-token"
+      }
+    }
+  }
+}
+```
+
+若使用用户名和密码，将 `PERFORMANCE_TOKEN` 替换为 `PERFORMANCE_USERNAME` 与 `PERFORMANCE_PASSWORD`。完成后重启 Claude Code；在 MCP 服务列表中确认 `performance-mcp` 已连接。
+
 ## MCP 工具
 
 ### `list_periods`
